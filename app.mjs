@@ -161,4 +161,20 @@ document.addEventListener('click', (e) => {
     }
 });
 
+document.getElementById('sortBtn').addEventListener('click', () => {
+    const sortBy = document.getElementById('sortBy').value;
+
+    games.sort((a, b) => {
+        if(sortBy === 'title') return a.title.localeCompare(b.title);
+        if(sortBy === 'difficulty') {
+            const difficultyOrder = ['Light', 'Medium', 'Hard'];
+            return difficultyOrder.indexOf(a.difficulty) - difficultyOrder.indexOf(b.difficulty);
+        }
+        if(sortBy === 'year') return a.year - b.year;
+        if(sortBy === 'rating') return a.rating - b.rating;
+        if(sortBy === 'playCount') return a.playCount - b.playCount;
+    });
+    renderGames();
+});
+
 renderGames();
