@@ -101,4 +101,24 @@ function renderGames() {
     });
 }
 
+document.addEventListener('input', (e) => {
+    if(e.target.classList.contains('rating-slider')) {
+        const gameId = e.target.dataset.gameId;
+        const game = games.find(g => g.id === gameId);
+        game.personalRating = parseInt(e.target.value);
+        saveGame(game);
+        e.target.previousElementSibling.textContent = `Rating: ${game.personalRating}/10`;
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if(e.target.classList.contains('play-count-btn')) {
+        const gameId = e.target.dataset.gameId;
+        const game = games.find(g => g.id === gameId);
+        game.playCount++;
+        saveGame(game);
+        e.target.previousElementSibling.textContent = `Play Count: ${game.playCount}`;
+    }
+});
+
 renderGames();
