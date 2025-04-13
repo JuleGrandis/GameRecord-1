@@ -152,4 +152,13 @@ document.getElementById('addGameBtn').addEventListener('click', () => {
     document.getElementById('gameUrl').value = '';
 });
 
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('delete-btn')) {
+        const gameId = e.target.dataset.gameId;
+        localStorage.removeItem(`game-${gameId}`);
+        games = games.filter(g => g.id !== gameId);
+        renderGames();
+    }
+});
+
 renderGames();
