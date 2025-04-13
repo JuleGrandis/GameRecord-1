@@ -121,4 +121,35 @@ document.addEventListener('click', (e) => {
     }
 });
 
+document.getElementById('addGameBtn').addEventListener('click', () => {
+    const newGame = new Game(
+        Date.now().toString(),
+        document.getElementById('gameTitle').value,
+        document.getElementById('gameDesigner').value,
+        document.getElementById('gameArtist').value,
+        document.getElementById('gamePublisher').value,
+        parseInt(document.getElementById('gameYear').value),
+        document.getElementById('gamePlayers').value,
+        document.getElementById('gameTime').value,
+        document.getElementById('gameDifficulty').value,
+        document.getElementById('gameUrl').value,
+        0,
+        0
+    );
+
+    saveGame(newGame);
+    games = retrieveAllGames();
+    renderGames();
+
+    document.getElementById('gameTitle').value = '';
+    document.getElementById('gameDesigner').value = '';
+    document.getElementById('gameArtist').value = '';
+    document.getElementById('gamePublisher').value = '';
+    document.getElementById('gameYear').value = '';
+    document.getElementById('gamePlayers').value = '';
+    document.getElementById('gameTime').value = '';
+    document.getElementById('gameDifficulty').value = '';
+    document.getElementById('gameUrl').value = '';
+});
+
 renderGames();
