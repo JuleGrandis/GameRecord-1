@@ -5,7 +5,7 @@ games = retrieveAllGames();
 
 document.getElementById('importSource').addEventListener('change', (event) => {
     const file = event.target.files[0];
-    if(file) {
+    if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
             importGames(e.target.result);
@@ -25,7 +25,7 @@ function retrieveAllGames() {
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key.startsWith('game-')) {
-            const gameData = JSON.parse(localStorage.getItem(key))
+            const gameData = JSON.parse(localStorage.getItem(key));
             games.push(new Game(
                 gameData.id,
                 gameData.title,
@@ -95,14 +95,14 @@ function renderGames() {
                 <button data-game-id="${game.id}" class="play-count-btn">+1 Play</button>
             </div>
             <a href="${game.url}" target="_blank">BoardGameGeek Page</a>
-            <button data-game-id="${game.id}" class="delete-btn">Delete Game</button>
-            `;
-            container.appendChild(gameElement);                    
+            <button data-game-id="${game.id}" class="delete-btn">🗑️ Delete</button>
+        `;
+        container.appendChild(gameElement);
     });
 }
 
 document.addEventListener('input', (e) => {
-    if(e.target.classList.contains('rating-slider')) {
+    if (e.target.classList.contains('rating-slider')) {
         const gameId = e.target.dataset.gameId;
         const game = games.find(g => g.id === gameId);
         game.personalRating = parseInt(e.target.value);
@@ -112,7 +112,7 @@ document.addEventListener('input', (e) => {
 });
 
 document.addEventListener('click', (e) => {
-    if(e.target.classList.contains('play-count-btn')) {
+    if (e.target.classList.contains('play-count-btn')) {
         const gameId = e.target.dataset.gameId;
         const game = games.find(g => g.id === gameId);
         game.playCount++;
@@ -165,14 +165,14 @@ document.getElementById('sortBtn').addEventListener('click', () => {
     const sortBy = document.getElementById('sortBy').value;
 
     games.sort((a, b) => {
-        if(sortBy === 'title') return a.title.localeCompare(b.title);
-        if(sortBy === 'difficulty') {
-            const difficultyOrder = ['Light', 'Medium', 'Hard'];
+        if (sortBy === 'title') return a.title.localeCompare(b.title);
+        if (sortBy === 'difficulty') {
+            const difficultyOrder = ['Light', 'Light-Medium', 'Medium', 'Medium-Heavy', 'Heavy'];
             return difficultyOrder.indexOf(a.difficulty) - difficultyOrder.indexOf(b.difficulty);
         }
-        if(sortBy === 'year') return a.year - b.year;
-        if(sortBy === 'rating') return a.rating - b.rating;
-        if(sortBy === 'playCount') return a.playCount - b.playCount;
+        if (sortBy === 'year') return a.year - b.year;
+        if (sortBy === 'rating') return a.rating - b.rating;
+        if (sortBy === 'playCount') return a.playCount - b.playCount;
     });
     renderGames();
 });

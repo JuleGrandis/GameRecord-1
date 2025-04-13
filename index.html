@@ -8,32 +8,62 @@
 </head>
 <body>
     <h1>Game Board Tracker</h1>
+    
+    <div class="header-controls">
+        <div id="addGame">
+            <h2>Add New Game</h2>
+            <div class="input-grid">
+                <div class="input-group">
+                    <input type="text" id="gameTitle" placeholder="Title" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="gameDesigner" placeholder="Designer" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="gameArtist" placeholder="Artist" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="gamePublisher" placeholder="Publisher" required>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="gameYear" placeholder="Year" min="0000" max="2025" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="gamePlayers" placeholder="Players (e.g. 2/2-5)" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="gameTime" placeholder="Play Time in Minutes" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="gameDifficulty" placeholder="Difficulty (Light/Medium/Hard)" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="gameUrl" placeholder="BGG URL" required>
+                </div>
+            </div>
+            <button id="addGameBtn">Add Game</button>
+        </div>
+
+        <div class="sort-section">
+            <label>Sort By:</label>
+            <select id="sortBy">
+                <option value="title">Title</option>
+                <option value="year">Year</option>
+                <option value="personalRating">Personal Rating</option>
+                <option value="playCount">Times Played</option>
+                <option value="difficulty">Difficulty</option>
+            </select>
+            <button id="sortBtn">Sort</button>
+        </div>
+
+        <div class="import-section">
+            <button class="import-btn">Import Games</button>
+            <input type="file" id="importSource" accept=".json">
+        </div>
+    </div>
+
     <div id="gamesContainer"></div>
+    
     <script type="module" src="app.mjs"></script>
-    <input type="file" id="importSource" accept=".json">
-    <div id="addGame">
-        <h2>Add New Game</h2>
-        <input type="text" id="gameTitle" placeholder="Title" required>
-        <input type="text" id="gameDesigner" placeholder="Designer" required>
-        <input type="text" id="gameArtist" placeholder="Artist" required>
-        <input type="text" id="gamePublisher" placeholder="Publisher" required>
-        <input type="number" id="gameYear" placeholder="Year" min="0000" max="2025" required>
-        <input type="text" id="gamePlayers" placeholder="Players (e.g. 2/2-5)" required>
-        <input type="text" id="gameTime" placeholder="Play Time in Minutes" required>
-        <input type="text" id="gameDifficulty" placeholder="Difficulty (Light/Medium/Hard)" required>
-        <input type="text" id="gameUrl" placeholder="BGG URL" required>
-        <button id="addGameBtn">Add Game</button>
-    </div>
-    <div id="sortControls">
-        <label>Sort By:</label>
-        <select id="sortBy">
-            <option value="title">Title</option>
-            <option value="year">Year</option>
-            <option value="personalRating">Personal Rating</option>
-            <option value="playCount">Times Played</option>
-            <option value="difficulty">Difficulty</option>
-        </select>
-        <button id="sortBtn">Sort</button>
-    </div>
 </body>
 </html>
