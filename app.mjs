@@ -10,7 +10,7 @@ document.getElementById('importSource').addEventListener('change', (event) => {
         reader.onload = (e) => {
             importGames(e.target.result);
             games = retrieveAllGames();
-            readerGames();
+            renderGames();
         };
         reader.readAsText(file);
     }
@@ -51,10 +51,9 @@ function exportGames() {
 
 function importGames(jsonData) {
     const gamesData = JSON.parse(jsonData);
-    gamesData.forEach(gameData => {
+    gamesData.forEach((gameData, index) => {
         const game = new Game(
-            Date.now().toString(),
-            gameData.id,
+            `game-${Date.now()}-${index}`,
             gameData.title,
             gameData.designer,
             gameData.artist,
@@ -70,3 +69,36 @@ function importGames(jsonData) {
         saveGame(game);
     });
 }
+
+function renderGames() {
+    const container = document.getElementById('gamesContainer');
+    container.innerHTML = '';
+
+    games.forEach(game => {
+        const gameElement = document.createElement('div');
+        gameElement.className = "game-card";
+        gameElement.innerHTML = `
+            <h3> ${game.title} (${game.year})</h3>
+            <p>Designer: ${game.designer}</p>
+            <p>Artist: ${game.artist}</p>
+            <p>Publisher: ${game.publisher}</p>
+            <p>Players: ${game.players}</p>
+            <p>Play Time: ${game.time}</p>
+            <p>Difficulty: ${game.difficulty}</p>
+            <div class="rating-control">
+                <label>Rating: <output>${game.personalRating}</output>/10</label>
+                <input type="range" min="0" max="10" value="${game.personalRating}"
+                    data-game-id="${game.id}" class="rating-slider">
+            </div>
+            <div class="play-count">
+                <label>Play Count: ${game.playCount}</label>
+                <button data-game-id="${game.id}" class="play-count-btn">+1 Play</button>
+            </div>
+            <a href="${game.url}" target="_blank">BoardGameGeek Page</a>
+            <button data-game-id="${game.id}" class="delete-btn">Delete Game</button>
+            `;
+            container.appendChild(gameElement);                    
+    });
+}
+
+renderGames();
