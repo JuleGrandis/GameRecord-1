@@ -11,5 +11,18 @@
     <div id="gamesContainer"></div>
     <script type="module" src="app.mjs"></script>
     <input type="file" id="importSource" accept=".json">
+    <div id="addGame">
+        <h2>Add New Game</h2>
+        <input type="text" id="gameTitle" placeholder="Title" required>
+        <input type="text" id="gameDesigner" placeholder="Designer" required>
+        <input type="text" id="gameArtist" placeholder="Artist" required>
+        <input type="text" id="gamePublisher" placeholder="Publisher" required>
+        <input type="number" id="gameYear" placeholder="Year" min="0000" max="2025" required>
+        <input type="text" id="gamePlayers" placeholder="Players (e.g. 2/2-5)" required>
+        <input type="text" id="gameTime" placeholder="Play Time in Minutes" required>
+        <input type="text" id="gameDifficulty" placeholder="Difficulty (Light/Medium/Hard)" required>
+        <input type="text" id="gameUrl" placeholder="BGG URL" required>
+        <button id="addGameBtn">Add Game</button>
+    </div>
 </body>
 </html>
