@@ -1,5 +1,21 @@
 import Game from "./models/structure.mjs";
 
+let games = [];
+games = retrieveAllGames();
+
+document.getElementById('importSource').addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            importGames(e.target.result);
+            games = retrieveAllGames();
+            readerGames();
+        };
+        reader.readAsText(file);
+    }
+});
+
 function saveGame(game) {
     localStorage.setItem(`game-${game.id}`, JSON.stringify(game));
 }
